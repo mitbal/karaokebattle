@@ -1,5 +1,34 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h1 Selamat datang di KaraokeBattle!!!
+  p.
+    Masukkan nama kompetisi kali ini
+  input(type='text', placeholder='Eurovision 20150')
+  button Buat kompetisi
+
+  p Berapa banyak peserta
+  input(type='text', placeholder='0')
+  button Lanjut
+
+  p Daftarkan nama peserta
+  input(type='text', placeholder='Cita citata')
+  button Selesai
+
+  table
+    thead
+      th Nama
+      th Babak 1 Bebas
+      th Babak 2 Duet
+      th Babak 3 Panas
+      th Total
+    tbody
+
+  p Masukkan nilai babak 1
+  button Lanjut babak 2
+
+  p Masukkan nilai babak 2
+  button Lanjut babak 3
+
+  p Masukkan nilai babak 3
+  button Selesaikan
