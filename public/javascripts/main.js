@@ -75,10 +75,23 @@ $('#btnSingerName').click(function() {
   }
   $('table tbody').html(content);
 
+  // Prepare the next stage form.
+  // Randomized the order of the singer
+  ordered_list = [];
+  for(i=0; i<singerNum; i++) {
+    ordered_list[i] = i;
+  }
+  random_list = [];
+  for(i=0; i<singerNum; i++) {
+    index = Math.floor(Math.random()*ordered_list.length);
+    random_list[i] = ordered_list[index];
+    ordered_list.splice(index, 1);
+  }
   content = '';
   for(i=0; i<singerNum; i++) {
-    content += singers[i].name;
-    content += '<input id="'+ singers[i].id +'babak1" type="text"></input>';
+    index = random_list[i];
+    content += singers[index].name;
+    content += '<input id="'+ singers[index].id +'babak1" type="text"></input>';
     content += '<br/>';
   }
   $('#babak1score').html(content);
