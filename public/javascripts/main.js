@@ -3,6 +3,7 @@
 // Global variable
 singerNum = 0;
 singers = [];
+compName = '';
 
 // Hide other block in the beginning
 $('#singNum').hide();
@@ -20,6 +21,11 @@ $('#btnCreate').click(function() {
   // show the next block
   $('#singNum').show();
 
+  compName = $('#txtCompName').val();
+  if(compName === '') {
+    compName = $('#txtCompName').attr('placeholder');
+  }
+  $('#klasemen h3').html('Kompetisi '+compName+' klasemen');
 });
 
 $('#btnSingerNum').click(function() {
