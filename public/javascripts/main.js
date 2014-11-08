@@ -45,9 +45,10 @@ $('#btnSingerName').click(function() {
     singers[i] = $('#singer'+i).val();
     content += '<tr>'
     content += '<td>'+ singers[i] +'</td>'
-    content += '<td>0</td>'
-    content += '<td>0</td>'
-    content += '<td>0</td>'
+    content += '<td id="babak1score'+ i +'">0</td>'
+    content += '<td id="babak2score'+ i +'">0</td>'
+    content += '<td id="babak3score'+ i +'">0</td>'
+    content += '<td id="totalscore'+ i +'">0</td>'
     content += '</tr>'
   }
 
@@ -56,7 +57,7 @@ $('#btnSingerName').click(function() {
   content = '';
   for(i=0; i<singerNum; i++) {
     content += singers[i];
-    content += '<input type="text"></input>'
+    content += '<input id="'+ singers[i]+'babak1' +'" type="text"></input>'
     content += '<br/>'
   }
   $('#babak1score').html(content);
@@ -69,10 +70,18 @@ $('#btnBabak1').click(function() {
   content = '';
   for(i=0; i<singerNum; i++) {
     content += singers[i];
-    content += '<input type="text"></input>'
+    content += '<input id="'+ singers[i]+'babak2' +'" type="text"></input>'
     content += '<br/>'
   }
   $('#babak2score').html(content);
+
+  // Update score
+  for(i=0; i<singerNum; i++) {
+    score = $('#'+singers[i]+'babak1').val();
+    $('#babak1score'+i).html(score);
+    totalScore = parseInt($('#totalscore'+i).html()) + parseInt(score);
+    $('#totalscore'+i).html(totalScore);
+  }
 });
 
 $('#btnBabak2').click(function() {
@@ -82,13 +91,29 @@ $('#btnBabak2').click(function() {
   content = '';
   for(i=0; i<singerNum; i++) {
     content += singers[i];
-    content += '<input type="text"></input>'
+    content += '<input id="'+ singers[i]+'babak3' +'" type="text"></input>'
     content += '<br/>'
   }
   $('#babak3score').html(content);
+
+  // Update score
+  for(i=0; i<singerNum; i++) {
+    score = $('#'+singers[i]+'babak2').val();
+    $('#babak2score'+i).html(score);
+    totalScore = parseInt($('#totalscore'+i).html()) + parseInt(score);
+    $('#totalscore'+i).html(totalScore);
+  }
 });
 
 $('#btnBabak3').click(function() {
   $('#babak3').hide();
   $('#win').show();
+
+  // Update score
+  for(i=0; i<singerNum; i++) {
+    score = $('#'+singers[i]+'babak3').val();
+    $('#babak3score'+i).html(score);
+    totalScore = parseInt($('#totalscore'+i).html()) + parseInt(score);
+    $('#totalscore'+i).html(totalScore);
+  }
 });
