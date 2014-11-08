@@ -29,16 +29,27 @@ $('#btnCreate').click(function() {
 });
 
 $('#btnSingerNum').click(function() {
-  $('#singNum').hide();
-  $('#singerName').show();
-
-  singerNum = parseInt($('#txtSingerNum').val());
-  content = '';
-  for(i=0; i<singerNum; i++) {
-    content += '<input id="singer'+ i +'" type="text" placeholder="Cita Citata"></input>';
-    content += '<br/>';
+  if($('#txtSingerNum').val() === '') {
+    singerNum = parseInt($('#txtSingerNum').attr('placeholder'));
+  } else {
+    singerNum = parseInt($('#txtSingerNum').val());
   }
-  $('#inputName').html(content);
+
+  if(singerNum <= 0) {
+    alert("Please insert more than 0 singer");
+  } else {
+    $('#singNum').hide();
+    $('#singerName').show();
+
+    content = '';
+    for(i=0; i<singerNum; i++) {
+      content += '<input id="singer'+ i +'" type="text" placeholder="Cita Citata"></input>';
+      content += '<br/>';
+    }
+    $('#inputName').html(content);
+  }
+
+
 });
 
 $('#btnSingerName').click(function() {
