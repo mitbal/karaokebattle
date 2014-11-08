@@ -7,17 +7,17 @@ block content
   #compName
     p.
       Masukkan nama kompetisi kali ini
-    input(type='text', placeholder='Eurovision 20150')
+    input#txtCompName(type='text', placeholder='Eurovision 20150')
     button#btnCreate Buat kompetisi
 
   #singNum
     p Berapa banyak peserta
-    input(type='text', placeholder='0')
+    input#txtSingerNum(type='text', placeholder='0')
     button#btnSingerNum Lanjut
 
   #singerName
     p Daftarkan nama peserta
-    input(type='text', placeholder='Cita citata')
+    #inputName
     button#btnSingerName Selesai
 
   #klasemen
@@ -32,14 +32,17 @@ block content
 
   #babak1
     p Masukkan nilai babak 1
+    #babak1score
     button#btnBabak1 Lanjut babak 2
 
   #babak2
     p Masukkan nilai babak 2
+    #babak2score
     button#btnBabak2 Lanjut babak 3
 
   #babak3
     p Masukkan nilai babak 3
+    #babak3score
     button#btnBabak3 Selesaikan
 
   #win
