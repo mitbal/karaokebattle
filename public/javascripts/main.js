@@ -189,4 +189,15 @@ $('#btnBabak3').click(function() {
     totalScore = parseInt($('#tab'+singers[i].id+' .totalscore').html()) + parseInt(score);
     $('#tab'+singers[i].id+' .totalscore').html(totalScore);
   }
+
+  // Celebrate the winner
+  winner = ''; winner_score = 0;
+  for(i=0; i<singerNum; i++) {
+    score = parseInt($('#tab'+singers[i].id+' .totalscore').html());
+    if(score > winner_score) {
+      winner_score = score;
+      winner = singers[i].name;
+    }
+  }
+  $('#win h2').html('Selamat kepada '+winner+' yang telah memenangkan kompetisi '+compName+' kali ini');
 });
