@@ -1,9 +1,24 @@
 // This is the main javascript code
 
+function randomized_order(n) {
+  ordered_list = [];
+  for(i=0; i<n; i++) {
+    ordered_list[i] = i;
+  }
+  random_list = [];
+  for(i=0; i<n; i++) {
+    index = Math.floor(Math.random()*ordered_list.length);
+    random_list[i] = ordered_list[index];
+    ordered_list.splice(index, 1);
+  }
+  return random_list;
+}
+
 // Global variable
 singerNum = 0;
 compName = '';
 singers = {};
+pair = [];
 
 // Hide other block in the beginning
 $('#singNum').hide();
@@ -77,16 +92,7 @@ $('#btnSingerName').click(function() {
 
   // Prepare the next stage form.
   // Randomized the order of the singer
-  ordered_list = [];
-  for(i=0; i<singerNum; i++) {
-    ordered_list[i] = i;
-  }
-  random_list = [];
-  for(i=0; i<singerNum; i++) {
-    index = Math.floor(Math.random()*ordered_list.length);
-    random_list[i] = ordered_list[index];
-    ordered_list.splice(index, 1);
-  }
+  random_list = randomized_order(singerNum);
   content = '';
   for(i=0; i<singerNum; i++) {
     index = random_list[i];
