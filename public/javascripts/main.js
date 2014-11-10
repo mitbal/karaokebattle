@@ -152,10 +152,27 @@ $('#btnBabak2').click(function() {
     $('#tab'+singers[pair[i][1]].id+' .totalscore').html(totalScore);
   }
 
+  // Prepare next stage form
+  // It is sorted based on the current total score, in descending way
+  scores = [];
+  for(i=0; i<singerNum; i++) {
+    score = parseInt($('#tab'+singers[i].id+' .totalscore').html());
+    scores[i] = [i, score];
+  }
+  // Sorting
+  for(i=0; i<singerNum-1; i++) {
+    for(j=i+1; j<singerNum; j++) {
+      if(scores[j][1] > scores[i][1]) {
+        temp = scores[i];
+        scores[i] = scores[j];
+        scores[j] = temp;
+      }
+    }
+  }
   content = '';
   for(i=0; i<singerNum; i++) {
-    content += singers[i].name;
-    content += '<input id="'+ singers[i].id+'babak3" type="text"></input>'
+    content += singers[scores[i][0]].name;
+    content += '<input id="'+ singers[scores[i][0]].id+'babak3" type="text"></input>'
     content += '<br/>'
   }
   $('#babak3score').html(content);
