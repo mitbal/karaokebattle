@@ -116,10 +116,21 @@ $('#btnBabak1').click(function() {
   }
 
   // Prepare next stage form
+  // Create duet order
+  random_list = randomized_order(singerNum);
+  numPair = Math.floor(singerNum/2);
+  for(i=0; i<numPair; i++) {
+    index1 = random_list[2*i]; index2 = random_list[2*i+1];
+    pair[i] = [index1, index2];
+  }
+  if(singerNum % 2 !== 0) {
+    index = random_list[singerNum-1];
+    pair[numPair] = [index, index];
+  }
   content = '';
-  for(i=0; i<singerNum; i++) {
-    content += singers[i].name;
-content += '<input id="'+ singers[i].id +'babak2" type="text"></input>';
+  for(i=0; i<numPair; i++) {
+    content += singers[pair[i][0]].name +' & '+singers[pair[i][1]].name;
+    content += '<input id="pair'+ i +'babak2" type="text"></input>';
     content += '<br/>';
   }
   $('#babak2score').html(content);
@@ -130,11 +141,15 @@ $('#btnBabak2').click(function() {
   $('#babak3').show();
 
   // Update score
-  for(i=0; i<singerNum; i++) {
-    score = $('#'+singers[i].id+'babak2').val();
-    $('#tab'+singers[i].id+' .babak2score').html(score);
-    totalScore = parseInt($('#tab'+singers[i].id+' .totalscore').html()) + parseInt(score);
-    $('#tab'+singers[i].id+' .totalscore').html(totalScore);
+  for(i=0; i<numPair; i++) {
+    score = $('#pair'+ i +'babak2').val();
+    $('#tab'+singers[pair[i][0]].id+' .babak2score').html(score);
+    $('#tab'+singers[pair[i][1]].id+' .babak2score').html(score);
+
+    totalScore = parseInt($('#tab'+singers[pair[i][0]].id+' .totalscore').html()) + parseInt(score);
+    $('#tab'+singers[pair[i][0]].id+' .totalscore').html(totalScore);
+    totalScore = parseInt($('#tab'+singers[pair[i][1]].id+' .totalscore').html()) + parseInt(score);
+    $('#tab'+singers[pair[i][1]].id+' .totalscore').html(totalScore);
   }
 
   content = '';
