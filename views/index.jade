@@ -11,7 +11,7 @@ block content
           | Karaokebattle adalah kompetisi karaoke 3 babak
           br
           | Masukkan nama kompetisi untuk memulai
-        input#txtCompName(type='text', placeholder='Eurovision 20150')
+        input#txtCompName(type='text', placeholder='Eurovision 20150' class='form-inline')
         button#btnCreate(class='btn btn-default' style='margin-left: 10px') Buat kompetisi
 
     .container(style='margin-top: 75px')
@@ -30,18 +30,18 @@ block content
             Pada babak ini para kontestan akan menyanyi dengan urutan poin terbawah terlebih dahulu. Lagu yang bisa dipilih pada babak ini dibatasi.
 
   #singNum
-    p Berapa banyak peserta
+    p Masukkan jumlah peserta
     input#txtSingerNum(type='text', placeholder='2')
-    button#btnSingerNum Lanjut
+    button#btnSingerNum(class='btn btn-default' style='margin-left: 10px') Lanjut
 
   #singerName
     p Daftarkan nama peserta
     #inputName
-    button#btnSingerName Selesai
+    button#btnSingerName(class='btn btn-default' style='margin-top: 10px') Selesai
 
   #klasemen
     h3 Kompetisi klasemen
-    table
+    table.table
       thead
         th Nama
         th Babak 1 Bebas
@@ -53,17 +53,17 @@ block content
   #babak1
     p Masukkan nilai babak 1
     #babak1score
-    button#btnBabak1 Lanjut babak 2
+    button#btnBabak1(class='btn btn-default' style='margin-top: 10px') Lanjut babak 2
 
   #babak2
     p Masukkan nilai babak 2
     #babak2score
-    button#btnBabak2 Lanjut babak 3
+    button#btnBabak2(class='btn btn-default') Lanjut babak 3
 
   #babak3
     p Masukkan nilai babak 3
     #babak3score
-    button#btnBabak3 Selesaikan
+    button#btnBabak3(class='btn btn-default') Selesaikan
 
   #win
-    h2 Selamat kepada ... yang telah memenangkan kompetisi ... kali ini
+    h3 Selamat kepada ... yang telah memenangkan kompetisi ... kali ini

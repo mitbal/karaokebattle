@@ -58,8 +58,10 @@ $('#btnSingerNum').click(function() {
 
     content = '';
     for(i=0; i<singerNum; i++) {
+      content += '<div style="margin-bottom: 5px">'
       content += '<input id="singer'+ i +'" type="text" placeholder="Cita Citata ke ' +i+ '"></input>';
       content += '<br/>';
+      content += '</div>'
     }
     $('#inputName').html(content);
   }
@@ -93,13 +95,17 @@ $('#btnSingerName').click(function() {
   // Prepare the next stage form.
   // Randomized the order of the singer
   random_list = randomized_order(singerNum);
-  content = '';
+  content = '<form class="form-horizontal">';
   for(i=0; i<singerNum; i++) {
     index = random_list[i];
-    content += singers[index].name;
+    content += '<div class="form-group" style="margin-bottom: 10px">'
+    content += '<label class="col-sm-2">'+singers[index].name+'</label>';
+    content += '<div class="col-sm-8">'
     content += '<input id="'+ singers[index].id +'babak1" type="text" placeholder="0"></input>';
-    content += '<br/>';
+    content += '</div>'
+    content += '</div>'
   }
+  content += '</form>'
   $('#babak1score').html(content);
 });
 
@@ -131,12 +137,16 @@ $('#btnBabak1').click(function() {
     index = random_list[singerNum-1];
     pair[numPair] = [index, index];
   }
-  content = '';
+  content = '<form class="form-horizontal">';
   for(i=0; i<numPair; i++) {
-    content += singers[pair[i][0]].name +' & '+singers[pair[i][1]].name;
+    content += '<div class="form-group">'
+    content += '<label class="col-sm-4">'+singers[pair[i][0]].name +' & '+singers[pair[i][1]].name +'</label>';
+    content += '<div class="col-sm-14">'
     content += '<input id="pair'+ i +'babak2" type="text" placeholder="0"></input>';
-    content += '<br/>';
+    content += '</div>'
+    content += '</div>'
   }
+  content += '</form>'
   $('#babak2score').html(content);
 });
 
@@ -177,12 +187,16 @@ $('#btnBabak2').click(function() {
       }
     }
   }
-  content = '';
+  content = '<form class="form-horizontal">';
   for(i=0; i<singerNum; i++) {
-    content += singers[scores[i][0]].name;
+    content += '<div class="form-group">'
+    content += '<label class="col-sm-2">'+ singers[scores[i][0]].name +'</label>';
+    content += '<div class="col-sm-8">'
     content += '<input id="'+ singers[scores[i][0]].id+'babak3" type="text" placeholder="0"></input>'
-    content += '<br/>'
+    content += '</div>'
+    content += '</div>'
   }
+  content += '</form>'
   $('#babak3score').html(content);
 });
 
@@ -211,5 +225,5 @@ $('#btnBabak3').click(function() {
       winner = singers[i].name;
     }
   }
-  $('#win h2').html('Selamat kepada '+winner+' yang telah memenangkan kompetisi '+compName+' kali ini');
+  $('#win h3').html('Selamat kepada '+winner+' yang telah memenangkan kompetisi '+compName+' kali ini');
 });
