@@ -138,7 +138,7 @@ $('#btnBabak1').click(function() {
     pair[numPair] = [index, index];
   }
   content = '<form class="form-horizontal">';
-  for(i=0; i<numPair; i++) {
+  for(i=0; i<pair.length; i++) {
     content += '<div class="form-group">'
     content += '<label class="col-sm-4">'+singers[pair[i][0]].name +' & '+singers[pair[i][1]].name +'</label>';
     content += '<div class="col-sm-14">'
@@ -155,7 +155,7 @@ $('#btnBabak2').click(function() {
   $('#babak3').show();
 
   // Update score
-  for(i=0; i<numPair; i++) {
+  for(i=0; i<pair.length; i++) {
     score = $('#pair'+ i +'babak2').val();
     if(score === '') {
       score = $('#pair'+ i +'babak2').attr('placeholder');
