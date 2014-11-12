@@ -2,13 +2,32 @@ extends layout
 
 block content
 
-  h1 Selamat datang di KaraokeBattle!!!
-
   #compName
-    p.
-      Masukkan nama kompetisi kali ini
-    input#txtCompName(type='text', placeholder='Eurovision 20150')
-    button#btnCreate Buat kompetisi
+    .container
+      .starter-template
+        h1 Selamat datang di KaraokeBattle!!!
+
+        p(class='lead')
+          | Karaokebattle adalah kompetisi karaoke 3 babak
+          br
+          | Masukkan nama kompetisi untuk memulai
+        input#txtCompName(type='text', placeholder='Eurovision 20150')
+        button#btnCreate(class='btn btn-default' style='margin-left: 10px') Buat kompetisi
+
+    .container(style='margin-top: 75px')
+      .row
+        .col-md-4
+          h2 Babak Bebas (1)
+          p.
+            Pada babak ini setiap kontestan bebas memilih lagu apapun yang ada di situs karaokeparty.
+        .col-md-4
+          h2 Babak Duet (2)
+          p.
+            Pada babak ini setiap kontestan akan dipasangkan dengan kontestan yang lain secara acak. Pasangan ini kemudian akan menyanyikan lagu bertipe duet. Poin yang didapat kedua kontestan adalah sama.
+        .col-md-4
+          h2 Babak Final (3)
+          p.
+            Pada babak ini para kontestan akan menyanyi dengan urutan poin terbawah terlebih dahulu. Lagu yang bisa dipilih pada babak ini dibatasi.
 
   #singNum
     p Berapa banyak peserta
