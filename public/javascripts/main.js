@@ -15,9 +15,13 @@ function randomized_order(n) {
 }
 
 // Global variable
+comp = {};
+comp.name = '';
+comp.singers = [];
+comp.winner = '';
+
 singerNum = 0;
-compName = '';
-singers = {};
+singers = [];
 pair = [];
 
 // Hide other block in the beginning
@@ -41,6 +45,7 @@ $('#btnCreate').click(function() {
     compName = $('#txtCompName').attr('placeholder');
   }
   $('#klasemen h3').html('Kompetisi '+compName+' klasemen');
+  comp.name = compName;
 });
 
 $('#btnSingerNum').click(function() {
@@ -91,6 +96,7 @@ $('#btnSingerName').click(function() {
     content += '</tr>';
   }
   $('table tbody').html(content);
+  comp.singers = singers;
 
   // Prepare the next stage form.
   // Randomized the order of the singer
@@ -119,9 +125,11 @@ $('#btnBabak1').click(function() {
     if(score === '') {
       score = $('#'+singers[i].id+'babak1').attr('placeholder');
     }
+    index = comp.singers.map(function(item) { return item.id; }).indexOf(singers[i].id);
+    comp.singers[index].babak1 = parseInt(score);
 
     $('#tab'+singers[i].id+' .babak1score').html(score);
-    totalScore = parseInt($('#tab'+singers[i].id+' .totalscore').html()) + parseInt(score);
+    totalScore = comp.singers[index].babak1;
     $('#tab'+singers[i].id+' .totalscore').html(totalScore);
   }
 
@@ -137,6 +145,7 @@ $('#btnBabak1').click(function() {
     index = random_list[singerNum-1];
     pair[numPair] = [index, index];
   }
+  comp.pair = pair;
   content = '<form class="form-horizontal">';
   for(i=0; i<pair.length; i++) {
     content += '<div class="form-group">'
@@ -164,9 +173,15 @@ $('#btnBabak2').click(function() {
     $('#tab'+singers[pair[i][0]].id+' .babak2score').html(score);
     $('#tab'+singers[pair[i][1]].id+' .babak2score').html(score);
 
-    totalScore = parseInt($('#tab'+singers[pair[i][0]].id+' .totalscore').html()) + parseInt(score);
+    index = comp.singers.map(function(item) { return item.id; }).indexOf(singers[pair[i][0]].id);
+    comp.singers[index].babak2 = parseInt(score);
+
+    totalScore = comp.singers[index].babak1 + comp.singers[index].babak2;
     $('#tab'+singers[pair[i][0]].id+' .totalscore').html(totalScore);
-    totalScore = parseInt($('#tab'+singers[pair[i][1]].id+' .totalscore').html()) + parseInt(score);
+
+    index = comp.singers.map(function(item) { return item.id; }).indexOf(singers[pair[i][1]].id);
+    comp.singers[index].babak2 = parseInt(score);
+    totalScore = comp.singers[index].babak1 + comp.singers[index].babak2;
     $('#tab'+singers[pair[i][1]].id+' .totalscore').html(totalScore);
   }
 
@@ -210,9 +225,11 @@ $('#btnBabak3').click(function() {
     if(score === '') {
       score = $('#'+singers[i].id+'babak3').attr('placeholder');
     }
+    index = comp.singers.map(function(item) { return item.id; }).indexOf(singers[i].id);
+    comp.singers[index].babak3 = parseInt(score);
 
     $('#tab'+singers[i].id+' .babak3score').html(score);
-    totalScore = parseInt($('#tab'+singers[i].id+' .totalscore').html()) + parseInt(score);
+    totalScore = comp.singers[index].babak1 + comp.singers[index].babak2 + comp.singers[index].babak3;
     $('#tab'+singers[i].id+' .totalscore').html(totalScore);
   }
 
@@ -225,5 +242,6 @@ $('#btnBabak3').click(function() {
       winner = singers[i].name;
     }
   }
+  comp.winner = winner;
   $('#win h3').html('Selamat kepada '+winner+' yang telah memenangkan kompetisi '+compName+' kali ini');
 });
