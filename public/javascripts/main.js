@@ -97,7 +97,7 @@ $('#btnSingerName').click(function() {
   for(i=0; i<singerNum; i++) {
     index = random_list[i];
     content += singers[index].name;
-    content += '<input id="'+ singers[index].id +'babak1" type="text"></input>';
+    content += '<input id="'+ singers[index].id +'babak1" type="text" placeholder="0"></input>';
     content += '<br/>';
   }
   $('#babak1score').html(content);
@@ -110,6 +110,10 @@ $('#btnBabak1').click(function() {
   // Update score
   for(i=0; i<singerNum; i++) {
     score = $('#'+singers[i].id+'babak1').val();
+    if(score === '') {
+      score = $('#'+singers[i].id+'babak1').attr('placeholder');
+    }
+
     $('#tab'+singers[i].id+' .babak1score').html(score);
     totalScore = parseInt($('#tab'+singers[i].id+' .totalscore').html()) + parseInt(score);
     $('#tab'+singers[i].id+' .totalscore').html(totalScore);
@@ -130,7 +134,7 @@ $('#btnBabak1').click(function() {
   content = '';
   for(i=0; i<numPair; i++) {
     content += singers[pair[i][0]].name +' & '+singers[pair[i][1]].name;
-    content += '<input id="pair'+ i +'babak2" type="text"></input>';
+    content += '<input id="pair'+ i +'babak2" type="text" placeholder="0"></input>';
     content += '<br/>';
   }
   $('#babak2score').html(content);
@@ -143,6 +147,10 @@ $('#btnBabak2').click(function() {
   // Update score
   for(i=0; i<numPair; i++) {
     score = $('#pair'+ i +'babak2').val();
+    if(score === '') {
+      score = $('#pair'+ i +'babak2').attr('placeholder');
+    }
+
     $('#tab'+singers[pair[i][0]].id+' .babak2score').html(score);
     $('#tab'+singers[pair[i][1]].id+' .babak2score').html(score);
 
@@ -172,7 +180,7 @@ $('#btnBabak2').click(function() {
   content = '';
   for(i=0; i<singerNum; i++) {
     content += singers[scores[i][0]].name;
-    content += '<input id="'+ singers[scores[i][0]].id+'babak3" type="text"></input>'
+    content += '<input id="'+ singers[scores[i][0]].id+'babak3" type="text" placeholder="0"></input>'
     content += '<br/>'
   }
   $('#babak3score').html(content);
@@ -185,13 +193,17 @@ $('#btnBabak3').click(function() {
   // Update score
   for(i=0; i<singerNum; i++) {
     score = $('#'+singers[i].id+'babak3').val();
+    if(score === '') {
+      score = $('#'+singers[i].id+'babak3').attr('placeholder');
+    }
+
     $('#tab'+singers[i].id+' .babak3score').html(score);
     totalScore = parseInt($('#tab'+singers[i].id+' .totalscore').html()) + parseInt(score);
     $('#tab'+singers[i].id+' .totalscore').html(totalScore);
   }
 
   // Celebrate the winner
-  winner = ''; winner_score = 0;
+  winner = ''; winner_score = -1;
   for(i=0; i<singerNum; i++) {
     score = parseInt($('#tab'+singers[i].id+' .totalscore').html());
     if(score > winner_score) {
