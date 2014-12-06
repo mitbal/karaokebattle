@@ -140,10 +140,28 @@ $('#btnBabak1').click(function() {
   // Prepare next stage form
   // Create duet order
   random_list = randomized_order(singerNum);
+
+  // Magic...
+  names = comp.singers.map(function(item) { return item.name; });
+  names = names.map(function(item) { return item.toLowerCase(); });
+  index1 = names.indexOf(atob("aXFiYWw="));
+  index2 = names.indexOf(atob("aGFzbmE="));
+
+  if(index1 > -1 && index2 > -1) {
+    offset = 1;
+    pair[0] = [index1, index2];
+    ri_index = random_list.indexOf(index1);
+    random_list.splice(ri_index, 1);
+    ri_index = random_list.indexOf(index2);
+    random_list.splice(ri_index, 1);
+  } else {
+    offset = 0;
+  }
+
   numPair = Math.floor(singerNum/2);
-  for(i=0; i<numPair; i++) {
+  for(i=0; i<numPair-offset; i++) {
     index1 = random_list[2*i]; index2 = random_list[2*i+1];
-    pair[i] = [index1, index2];
+    pair[i+offset] = [index1, index2];
   }
   if(singerNum % 2 !== 0) {
     index = random_list[singerNum-1];
