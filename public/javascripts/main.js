@@ -14,6 +14,10 @@ function randomized_order(n) {
   return random_list;
 }
 
+$(window).bind('beforeunload', function() {
+  return "Do you really want to leave? You will lose the competition progress";
+});
+
 // Global variable
 comp = {};
 comp.name = '';
